@@ -1,0 +1,76 @@
+Z =============================================================================
+C 514
+K UTIL
+T Wed May 29 14:53:27 PDT 1991
+U gjw
+S Added sleep on read to avoid race with uugetty.
+D In the past cu and uugetty were getting into a race condition where
+D a poll message on the stream needed to be read by uugetty but sometimes
+D cu was beating it to it causing a read error with with errno set to
+D EBADMSG.
+D 
+D The cure for this is to set up a loop for 5 retrys with a sleep of 1
+D second at the top of the loop around the read system call. If it still
+D fails after 5 retrys then cu will exit with lost line.
+R util/src/cmd/cu/cu.c	 23.4
+B /usr/bin/cu
+Z =============================================================================
+Z =============================================================================
+C 936
+K UTIL
+T Tue Sep 10 08:27:16 PDT 1991
+U craig
+S Three independent changes:
+S 1) check for existence of Cucall.telno before calling  strlen(telno) in main.
+S 2) flush output to tty after ever received char in _receive.
+S 3) only call sleep (to swtch in uugetty) in r_char if we read the poll msg
+S    (belongs to uugetty, causes a read error).
+D I made 3 independent changes.
+D 1) In main there was a call to strlen(Cucall.telno). If no telephone number
+D    was entered (eg a direct connect) this bus errored. I added a check that
+D    the number existed before calling strlen.
+D 2) In _receive the program reads characters from the line (r_char) and
+D    writes it to a buffer (w_char) to be written to the screen. r_char
+D    flushes the write buffer to the screen iff it reads from the line. If
+D    it read several characters last time r_char gets the next character
+D    from a read buffer and does not flush the write buffer. w_char puts
+D    characters into a write buffer and only flushes it when it becomes
+D    full. So if we ever read more than 1 character from the line we don't
+D    do any more writing to the screen until we fill the output buffer or
+D    drain the input buffer. This makes the output very bursty. I added
+D    a flush of the output buffer after every w_char which is similar to the
+D    transmit() side.
+D 3) cu and uuegtty are a pair of programs competing for the same line. They
+D    must know about each others protocol. uugetty has set the line up to send
+D    a poll message to the head when the line is connected (modem raises CD).
+D    This poll message causes a read error for a read system call. It must be
+D    read by a getmsg system call. Furthermore it belongs to uugetty not cu.
+D    If cu gets a read error after opening the line and it is not a EINTR then
+D    it probably is an attemp to read the poll message that belongs to uugetty.
+D    Another read by cu will not switch out cu, it will only return the error
+D    again. To switch out cu and let uugetty in we do a sleep. The sleep was
+D    after every read, I changed it to after an error on a read. The five retries
+D    are to make sure uugetty gets a chance to be switched in.
+N cu was very slow before. Now it is much more responsive. Characters are echoed
+N to the screen as they arrive.
+R util/src/cmd/cu/cu.c	 23.5
+B /use/bin/cu
+Z =============================================================================
+Z =============================================================================
+C 937
+K UTIL
+T Tue Sep 10 09:38:49 PDT 1991
+U craig
+S cleanup "grey expression" & illegal pointer/integer operation.
+R util/src/cmd/cu/cu.c	 23.6
+B /usr/bin/cu
+Z =============================================================================
+Z =============================================================================
+C 1043
+K UTIL
+T Thu Sep 26 16:27:11 PDT 1991
+U craig
+S Turn off debuging left on from two deltas ago.
+R util/src/cmd/cu/cu.c	 23.7
+B /usr/bin/cu
+Z =============================================================================

@@ -1,0 +1,62 @@
+Z =============================================================================
+C 207
+K UTIL
+T Wed Mar 13 10:22:29 PST 1991
+U simon
+P 4893
+S Added code to fix bug which dis-allowed bi-directional
+S modem use
+D Uugetty now interacts with the tty driver in a manner
+D which allows bi-directional modem use.  Added the use
+D of a new ioctl call
+N uugetty now allows bi-directional use
+R util/src/cmd/uucp/uugetty.c	 23.2
+B /usr/lib/uucp/uugetty
+Z =============================================================================
+Z =============================================================================
+C 525
+K UTIL
+T Thu May 30 09:54:12 PDT 1991
+U gjw
+S Added some extra debugging code and corrected an AT&T typo.
+R util/src/cmd/uucp/uugetty.c	 23.3
+B /usr/lib/uucp/uugetty
+Z =============================================================================
+Z =============================================================================
+C 913
+K UTIL
+T Wed Sep  4 09:49:54 PDT 1991
+U simon
+S The arg to wait is a pointer to int.
+S The previous version has short which killed uusched on the 040 3.3p3.
+R util/src/cmd/uucp/uusched.c	 23.2
+B /usr/lib/uucp/uusched
+Z =============================================================================
+Z =============================================================================
+C 1071
+K UTIL
+T Sat Oct  5 12:13:16 PDT 1991
+U simon
+S uudemon.cleanup name too long for POSIX install.  Shortened to match specfiles.
+R util/src/cmd/uucp/uucp.mk	 23.4
+B none
+Z =============================================================================
+Z =============================================================================
+C 1080
+K UTIL
+T Mon Oct  7 09:47:33 PDT 1991
+U sriram
+P 5347
+P 5360
+S Replaced an exec (/bin/mkdir) with a mkdir system call  - problems with permsns.
+D In a POSIX environment a chown by any uid other than root is not going to
+D happen; Hence the directories created by uucico under /usr/spool/uucp had
+D a owner of the person performing the uucp and not the uucp_uid. This prevented 
+D other persons from perfoming a uucp successfully.
+D 
+D A /bin/mkdir exec was removed and replaced with a mkdir system call.
+D The chown and setuid(UUCP_UID) was removed  as they were not necessary- taken
+D care of by the mkdr system call.
+R util/src/cmd/uucp/expfile.c	 23.2
+B uucp, uucico,uux, uuxqt,uusched
+Z =============================================================================

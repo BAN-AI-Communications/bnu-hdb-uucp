@@ -1,0 +1,50 @@
+#	START NEW ARIX SCCS HEADER
+#
+#	@(#) README.ses: version 25.1 created on 12/2/91 at 13:53:09
+#
+#	Copyright (c) 1990 by Arix Corporation
+#	All Rights Reserved
+#
+#	@(#)README.ses	25.1	12/2/91 Copyright (c) 1990 by Arix Corporation
+#
+#	END NEW ARIX SCCS HEADER
+#
+===============================================================================
+bnu.admin							V.3.1 port
+Thu Sep 10 20:16:45 PDT 1987
+judy
+
+	DESCRIPTION: New files from 5.3.1 release.
+
+	FIX:
+
+	FILES:
+	/usr/src/cmd/bnu.admin/adddevice
+	/usr/src/cmd/bnu.admin/addport
+	/usr/src/cmd/bnu.admin/lssystem
+	/usr/src/cmd/bnu.admin/systemmgmt
+	/usr/src/cmd/bnu.admin/trysystem
+===============================================================================
+Mon Mar 6 20:19:00 PDT 1989
+shen spr# 1657
+
+	DESCRIPTION: After entering sysadm pollmgmt, selecting 2, debug msg
+
+	FIX/DISCUSSION: 
+		Delete debug message from idiot/bnu.admin/addpoll
+
+	FILES:
+		idiot/bnu.admin/addpoll
+
+	RELEASE NOTE: (Document one or more of the following.)
+ENHANCEMENT:  
+PROBLEM_FIX:  
+	sysadm pollmgmt and selecting 2 no longer prints debug message.
+TECHNOTE:   
+KNOWN_PROBLEM:   
+NO_SUPPORT:   
+MAN_PAGE:   
+ARETE_SPECIFIC:  
+INTERNAL_ONLY:
+SPERRY_ONLY:
+===============================================================================

@@ -1,0 +1,7 @@
+
+#	ATT:#ident	"uucp:uudemon.hour	2.2"
+
+#ident	"@(#)uucp:uudemon.hour	25.1"
+
+/usr/lib/uucp/uusched &
+/usr/lib/uucp/uuxqt &

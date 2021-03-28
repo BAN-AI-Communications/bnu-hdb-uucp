@@ -1,0 +1,6 @@
+#		uucp 23.1
+
+1,30 * * * * "/usr/lib/uucp/uudemon.poll" > /dev/null
+11,41 * * * * "/usr/lib/uucp/uudemon.hour" > /dev/null
+48 5,12,19 * * * "/usr/lib/uucp/uudemon.admin" > /dev/null
+45 23 * * * "/usr/lib/uucp/uudemon.cleanu" > /dev/null 2>&1

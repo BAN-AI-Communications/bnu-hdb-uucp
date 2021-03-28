@@ -1,0 +1,54 @@
+#	START NEW ARIX SCCS HEADER
+#
+#	@(#) README.ses: version 25.1 created on 12/2/91 at 14:10:15
+#
+#	Copyright (c) 1990 by Arix Corporation
+#	All Rights Reserved
+#
+#	@(#)README.ses	25.1	12/2/91 Copyright (c) 1990 by Arix Corporation
+#
+#	END NEW ARIX SCCS HEADER
+#
+========================================================================
+cu								V.3 port
+
+Thu Oct 16 17:18:19 PDT 1986					baumann
+
+	DESCRIPTION:
+	Changed DEBUG and error printouts.
+
+	FILES:
+	usr/src/cmd/cu/cu.c
+	usr/src/cmd/cu/culine.c
+	usr/src/cmd/cu/altconn.c
+========================================================================
+Fri Jun 12 11:03:05 PDT 1987
+baumann								ATT pid 400
+
+	TECHNOTE:
+		In order for the cu command to work more reliably, two
+		dashes should be used after the phone number to force
+		a longer delay in the calling sequence.
+========================================================================
+Thu Nov  5 11:32:25 PST 1987
+kelly
+	DESCRIPTION: ported 5.3.1 updates
+
+	FILES:
+	usr/src/cmd/cu/cu.c
+	usr/src/cmd/cu/cu.mk
+
+No technote needed.
+========================================================================
+Thu Apr  5 11:00:00 PST 1990
+shen spr# 3874, 3897, 3946 
+	DESCRIPTION: cu does not support STREAMS modules being pushed. 
+
+	FIX/DISCUSSION: Added code to cu to push STREAMS modules. 
+
+	FILES:
+	usr/src/cmd/cu/cu.c
+	usr/src/cmd/cu/altconn.c
+
+PROBLEM_FIX:	cu now supports STREAMS modules being pushed.
+========================================================================

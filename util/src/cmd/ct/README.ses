@@ -1,0 +1,104 @@
+#	START NEW ARIX SCCS HEADER
+#
+#	@(#) README.ses: version 25.1 created on 12/2/91 at 14:09:20
+#
+#	Copyright (c) 1990 by Arix Corporation
+#	All Rights Reserved
+#
+#	@(#)README.ses	25.1	12/2/91 Copyright (c) 1990 by Arix Corporation
+#
+#	END NEW ARIX SCCS HEADER
+#
+========================================================================
+ct								V.3 port
+
+Thu Oct 16 17:18:19 PDT 1986					baumann
+
+	DESCRIPTION:
+	Mostly changes in DEBUG printing.
+
+	FILES:
+	usr/src/cmd/ct/ct.c
+========================================================================
+ct								V.3.1 port
+Fri Sep 11 10:10:26 PDT 1987
+judy
+
+	DESCRIPTION: New file from 5.3.1 release.
+
+	FILES:
+	usr/src/cmd/ct/ct.c
+========================================================================
+Fri Mar 11 17:10:10 PDT 1988
+Shen
+	DESCRIPTION: ct does not allow remote terminal to connect properly 
+
+	FIX/DISCUSSION:
+	Since uugetty waits for 60 seconds for /usr/spool/locks/LCK.xxx
+	to be removed before it kills itself and letting init respawn a
+	new uugetty, ct must wait for approximately 65 seconds for the
+	above mechanism to complete before exiting.
+
+	FILES:
+	usr/src/cmd/ct/ct.c
+
+	RELEASE NOTE: (Document one or more of the following.)
+no release note required because:
+ENHANCEMENT:  
+PROBLEM_FIX:  
+TECHNOTE:   
+	The following describes the setup required to provide environment
+	for ct to operate properly. Assume that /dev/tty15 is the tty port for
+	dial in and out.
+	1. /usr/lib/uucp/Devices must have the following entries:
+	  ACU	tty15 - 1200 hayes
+	  Direct tty15- 1200 hayes
+	2. /usr/lib/uucp/Dialers should have an entry describing the protocol
+	for the type of modem being used by the system.
+	3. The script file invoking ct is as follows:
+	    sleep 30	# allow remote user to exit completely
+	    ct -x9 -h -s2400 <phone no of remote modem> #example uses 2400 baud
+	4. remote user should wait 1 minute before hitting carriage return at
+	   the 'Hit carriage return' prompt.
+	5. In /etc/inittab, it should be set up that uugetty be run on tty15.
+	   i.e. b7::respawn:/usr/lib/uucp/uugetty -r -t120 tty15 2400
+KNOWN_PROBLEM:   
+NO_SUPPORT:   
+MAN_PAGE:   
+ARETE_SPECIFIC:  
+INTERNAL_ONLY:
+	ct allows remote terminal to connect properly 
+SPERRY_ONLY:
+=======================================================================
+Thu Sep 15 19:11:00 PDT 1988
+shen
+	DESCRIPTION:   Ported for NFS 5.3. 
+
+	FIX/DISCUSSION: 
+
+	FILES:	/usr/src/cmd/ct/ct.mk
+
+	RELEASE NOTE: (Document one or more of the following.)
+no release note required because:
+ENHANCEMENT:  
+PROBLEM_FIX:  
+TECHNOTE:   
+KNOWN_PROBLEM:   
+NO_SUPPORT:   
+MAN_PAGE:   
+ARETE_SPECIFIC:  
+INTERNAL_ONLY:
+SPERRY_ONLY:
+===============================================================================
+Thu Apr  5 19:00:00 PST 1990
+shen spr# 3874, 3897, 3946 
+	DESCRIPTION: ct does not support STREAMS modules being pushed. 
+
+	FIX/DISCUSSION: Added code to cu to push STREAMS modules. 
+
+	FILES:
+	usr/src/cmd/ct/ct.c
+	usr/src/cmd/ct/ct.mk
+
+PROBLEM_FIX:	ct now supports STREAMS modules being pushed.
+========================================================================
