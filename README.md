@@ -1,3 +1,3 @@
 # BNU / HDB UUCP
 
-**BNU** (*Basic Network Utilities*) / **HDB** (*HoneyDanBer*) _**UUCP**_
+**BNU** (_Basic Network Utilities_) / **HDB** (_HoneyDanBer_) _**UUCP**_
