@@ -4,3 +4,9 @@ util/src/cmd/assist/lib/forms/uucpl.fs linguist-vendored
 util/src/cmd/assist/lib/forms/uucpr.fs linguist-vendored
 *.fs linguist-vendored
 .fs linguist-vendored
+Makefile linguist-vendored
+makefile linguist-vendored
+*.mk linguist-vendored
+.mk linguist-vendored
+*.sh linguist-vendored
+.sh linguist-vendored
